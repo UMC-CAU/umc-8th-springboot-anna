@@ -1,0 +1,7 @@
+package umc_study.study.domain.enums;
+
+public enum FoodType {
+    KOREANFOOD, JAPANESEFOOD, CHINESEFOOD, WESTERNFOOD,
+    CHICKEN, SNACKFOOD, GRILLEDMEAT, LUNCH, NIGHTSNACK,
+    FASTFOOD, DESSERT, ASIANFOOD
+}
