@@ -2,18 +2,26 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.0.0'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+//	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
-group = 'com.example'
-version = '1.0.0'
-sourceCompatibility = '17'
+group = 'umc'
+version = '0.0.1-SNAPSHOT'
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
 
 repositories {
 	mavenCentral()
 }
-
-def querydslDir = "$buildDir/generated/querydsl"
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -21,9 +29,11 @@ dependencies {
 	implementation 'org.hibernate.orm:hibernate-core:6.0.2.Final'
 	implementation 'mysql:mysql-connector-java:8.0.33'
 
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 	// QueryDSL
 	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
-	annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
+	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
 	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
 	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 
@@ -40,46 +50,60 @@ dependencies {
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
 	implementation 'org.springdoc:springdoc-openapi-data-rest:1.6.9'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// dependency 추가사항
+	// Hibernate
+	implementation 'org.hibernate.orm:hibernate-core:6.0.2.Final'  // Hibernate 6.0.2 이상
 }
 
-sourceSets {
-	main {
-		java {
-			srcDirs = ['src/main/java', querydslDir]
-		}
-		resources {
-			srcDirs = ['src/main/resources']
-		}
-	}
-}
-
-// ✅ Q파일은 annotation processor가 자동 생성
-tasks.withType(JavaCompile).configureEach {
-	options.annotationProcessorGeneratedSourcesDirectory = file(querydslDir)
-}
-
-querydsl {
-	jpa = true
-	querydslSourcesDir = querydslDir
-}
-
-compileQuerydsl {
-	options.annotationProcessorPath = configurations.querydsl
-	// ❌ 의존성 설정 없음 (순환 방지!)
-}
-
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-	querydsl.extendsFrom compileClasspath
-}
-
+// gradle clean 시에 QClass 디렉토리 삭제
 clean {
-	delete file(querydslDir)
+	delete file('src/main/generated')
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+//
+//sourceSets {
+//	main {
+//		java {
+//			srcDirs = ['src/main/java', 'src/main/resources']
+//		}
+//	}
+//}
+//
+//tasks.named('test') {
+//	useJUnitPlatform()
+//}
+//
+//// Querydsl 설정부
+//def generated = 'src/main/generated'
+//
+//// querydsl QClass 파일 생성 위치를 지정
+//tasks.withType(JavaCompile) {
+//	options.getGeneratedSourceOutputDirectory().set(file(generated))
+//}
+//
+//querydsl {
+//	jpa = true
+//	querydslSourcesDir = generated
+//}
+//sourceSets {
+//	main.java.srcDirs += [ generated ]
+//}
+//
+//compileQuerydsl{
+//	options.annotationProcessorPath = configurations.querydsl
+//}
+//
+//configurations {
+//	compileOnly {
+//		extendsFrom annotationProcessor
+//	}
+//	querydsl.extendsFrom compileClasspath
+//}
+//
+//clean {
+//	delete file(generated)
+//}
