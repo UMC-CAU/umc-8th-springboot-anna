@@ -23,10 +23,11 @@ import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
+// REST controller에서 발생하는 예외를 전역적으로 처리
 @RestControllerAdvice(annotations = {RestController.class}) // ExceptionAdvice가 @RestControllerAdvice 가지고 있음!
-public class ExceptionAdvice extends ResponseEntityExceptionHandler {
+public class ExceptionAdvice extends ResponseEntityExceptionHandler { // 스프링 기본 예외 핸들링 기능 오버라이드
 
-    @ExceptionHandler
+    @ExceptionHandler // 특정 예외에 대한 처리 로직 작성
     public ResponseEntity<Object> validation(ConstraintViolationException e, WebRequest request) {
         String errorMessage = e.getConstraintViolations().stream()
                 .map(constraintViolation -> constraintViolation.getMessage())
@@ -69,7 +70,7 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
     private ResponseEntity<Object> handleExceptionInternal(Exception e, ErrorReasonDTO reason,
                                                            HttpHeaders headers, HttpServletRequest request) {
 
-        ApiResponse<Object> body = ApiResponse.onFailure(reason.getCode(),reason.getMessage(),null);
+        ApiResponse<Object> body = ApiResponse.onFailure(reason.getCode(),reason.getMessage(),null); // 예외 발생 시 일관된 응답구조 제공
 //        e.printStackTrace();
 
         WebRequest webRequest = new ServletWebRequest(request);
