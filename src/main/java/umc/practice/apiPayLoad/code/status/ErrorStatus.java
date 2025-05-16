@@ -25,8 +25,9 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // 게시글
     ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
+    REGION_NOT_FOUND(HttpStatus.NOT_FOUND, "REGION_404", "해당 ID를 가진 지역이 없습니다."),
+    FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "FOOD4001", "해당 음식 카테고리를 찾을 수 없습니다.");
 
-    FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "FOOD4001", "해당 음식 카테고리를 찾을 수 없습니다."); // 세미콜론 주의!
 
     private final HttpStatus httpStatus;
     private final String code;
