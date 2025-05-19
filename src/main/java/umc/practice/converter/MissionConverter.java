@@ -9,7 +9,7 @@ import umc.practice.web.dto.MissionResponseDTO;
 // 8th mission
 @Component
 public class MissionConverter {
-    public Mission toMission(MissionRequestDTO.CreateDTO dto, Store store){
+    public Mission toMission(MissionRequestDTO.CreateMissionDTO dto, Store store){
         return Mission.builder()
                 .store(store)
                 .reward(dto.getReward())

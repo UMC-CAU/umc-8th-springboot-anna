@@ -12,15 +12,16 @@ import umc.practice.web.dto.MissionResponseDTO;
 @RequiredArgsConstructor
 @RequestMapping("/api/stores/{storeId}/missions")
 public class MissionController {
+
     private final MissionCommandService missionCommandService;
 
     @PostMapping
     public ResponseEntity<MissionResponseDTO.DetailDTO> createMission(
             @PathVariable Long storeId,
-            @RequestBody @Valid MissionRequestDTO.CreateDTO request) {
+            @RequestBody @Valid MissionRequestDTO.CreateMissionDTO request) {
 
         MissionResponseDTO.DetailDTO response = missionCommandService.create(storeId, request);
         return ResponseEntity.ok(response);
     }
-
 }
+

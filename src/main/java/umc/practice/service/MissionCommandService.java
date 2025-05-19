@@ -5,6 +5,6 @@ import umc.practice.web.dto.MissionRequestDTO;
 import umc.practice.web.dto.MissionResponseDTO;
 
 public interface MissionCommandService {
-    MissionResponseDTO.DetailDTO create(Long storeId, MissionRequestDTO.CreateDTO dto);
+    MissionResponseDTO.DetailDTO create(Long storeId, MissionRequestDTO.@Valid CreateMissionDTO dto);
 
 }

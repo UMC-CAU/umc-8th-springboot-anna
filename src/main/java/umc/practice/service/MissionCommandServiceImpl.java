@@ -20,7 +20,7 @@ public class MissionCommandServiceImpl implements MissionCommandService{
     private final MissionConverter missionConverter;
 
     @Override
-    public MissionResponseDTO.DetailDTO create(Long storeId, MissionRequestDTO.CreateDTO dto){
+    public MissionResponseDTO.DetailDTO create(Long storeId, MissionRequestDTO.CreateMissionDTO dto){
         Store store = storeRepository.findById(storeId)
                 .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
 
