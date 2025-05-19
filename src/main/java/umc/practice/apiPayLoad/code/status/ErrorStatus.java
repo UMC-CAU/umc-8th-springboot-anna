@@ -28,7 +28,8 @@ public enum ErrorStatus implements BaseErrorCode {
     REGION_NOT_FOUND(HttpStatus.NOT_FOUND, "REGION404", "해당 ID를 가진 지역이 없습니다."),
     STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE404", "해당 ID를 가진 가게가 없습니다."),
     REVIEW_BODY(HttpStatus.NOT_ACCEPTABLE, "REVIEW400","리뷰 내용을 입력해주세요."),
-    FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "FOOD4001", "해당 음식 카테고리를 찾을 수 없습니다.");
+    FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "FOOD4001", "해당 음식 카테고리를 찾을 수 없습니다."),
+    MISSION_NOT_FOUND(HttpStatus.NOT_FOUND,"MISSION4001","해당 미션을 찾을 수 없습니다.");
 
 
     private final HttpStatus httpStatus;

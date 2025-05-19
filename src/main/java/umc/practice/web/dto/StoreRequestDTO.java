@@ -11,7 +11,7 @@ public class StoreRequestDTO {
     @Setter
     @NoArgsConstructor
 
-    public static class CreateDTO{
+    public static class CreateStoreDTO{
         @NotBlank
         private String name;
 
