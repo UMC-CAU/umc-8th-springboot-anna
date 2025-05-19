@@ -18,11 +18,11 @@ public class StoreController {
     private final StoreCommandService storeCommandService;
 
     @PostMapping
-    public ResponseEntity<StoreResponseDTO.DetailDTO> createStore(
+    public ResponseEntity<StoreResponseDTO.DetailStoreDTO> createStore(
             @PathVariable Long regionId,
-            @RequestBody @Valid StoreRequestDTO.CreateDTO requestDto) {
+            @RequestBody @Valid StoreRequestDTO.CreateStoreDTO requestDto) {
 
-        StoreResponseDTO.DetailDTO responseDto = storeCommandService.create(regionId, requestDto);
+        StoreResponseDTO.DetailStoreDTO responseDto = storeCommandService.create(regionId, requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }
 }

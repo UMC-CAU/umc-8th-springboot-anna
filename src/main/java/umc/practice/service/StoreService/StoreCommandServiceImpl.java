@@ -24,7 +24,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
 
     @Override
     @Transactional
-    public StoreResponseDTO.DetailDTO create(Long regionId, StoreRequestDTO.CreateDTO dto) {
+    public StoreResponseDTO.DetailStoreDTO create(Long regionId, StoreRequestDTO.CreateStoreDTO dto) {
         // 1. 지역 존재 여부 확인
         Region region = regionRepository.findById(regionId)
                 .orElseThrow(() -> new RegionHandler(ErrorStatus.REGION_NOT_FOUND));

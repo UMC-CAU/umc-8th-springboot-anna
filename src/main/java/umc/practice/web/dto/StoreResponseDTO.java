@@ -8,7 +8,7 @@ public class StoreResponseDTO {
 
     @Getter
     @AllArgsConstructor
-    public static class DetailDTO {
+    public static class DetailStoreDTO {
         private Long id;
         private String name;
         private String address;

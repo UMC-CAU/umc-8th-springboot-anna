@@ -10,7 +10,7 @@ import umc.practice.web.dto.StoreResponseDTO;
 @Component
 public class StoreConverter {
 
-    public Store toStore(StoreRequestDTO.CreateDTO dto, Region region) {
+    public Store toStore(StoreRequestDTO.CreateStoreDTO dto, Region region) {
         return Store.builder()
                 .name(dto.getName())
                 .address(dto.getAddress())
@@ -19,8 +19,8 @@ public class StoreConverter {
                 .build();
     }
 
-    public StoreResponseDTO.DetailDTO toDto(Store store) {
-        return new StoreResponseDTO.DetailDTO(
+    public StoreResponseDTO.DetailStoreDTO toDto(Store store) {
+        return new StoreResponseDTO.DetailStoreDTO(
                 store.getId(),
                 store.getName(),
                 store.getAddress(),
