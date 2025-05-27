@@ -12,7 +12,9 @@ import umc.practice.service.StoreService.StoreQueryService;
 @EnableJpaAuditing
 public class PracticeApplication {
 
+
 	public static void main(String[] args) {
+		System.out.println("test issue");
 		SpringApplication.run(PracticeApplication.class, args);
 	}
 
