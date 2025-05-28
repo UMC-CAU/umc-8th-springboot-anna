@@ -6,19 +6,15 @@ import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.practice.apiPayLoad.ApiResponse;
 import umc.practice.converter.StoreConverter;
 import umc.practice.domain.Review;
-import umc.practice.service.ReviewCommandService;
 import umc.practice.service.StoreService.StoreQueryService;
 import umc.practice.validation.annotation.ExistStore;
-import umc.practice.web.dto.ReviewRequestDTO;
 import umc.practice.web.dto.ReviewResponseDTO;
 
 // 9th 실습
