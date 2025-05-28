@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import umc.practice.domain.Review;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 // 8th mission
@@ -44,4 +46,22 @@ public class ReviewResponseDTO {
         String body;
         LocalDate createdAt;
     }
+
+    // 9th misison
+    @Getter
+    @Builder
+    public static class SummaryDTO {
+        private String name;
+        private String content;
+        private LocalDateTime createdAt;
+
+        public static SummaryDTO fromEntity(Review review) {
+            return SummaryDTO.builder()
+                    .name(review.getMember().getName())
+                    .content(review.getBody())
+                    .createdAt(review.getCreatedAt())
+                    .build();
+        }
+    }
+
 }
