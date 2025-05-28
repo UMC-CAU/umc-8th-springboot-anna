@@ -1,4 +1,4 @@
-package umc.practice.service;
+package umc.practice.service.MissionService;
 
 import jakarta.validation.Valid;
 import umc.practice.web.dto.MissionRequestDTO;
